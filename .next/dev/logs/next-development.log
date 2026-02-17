@@ -12,3 +12,140 @@
 [00:37:27.085] Server  LOG     ✓ Compiled in 29ms
 [00:38:04.618] Server  LOG     ✓ Compiled in 36ms
 [00:38:15.812] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:42:18.208] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:42:21.503] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:42:22.406] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:43:02.172] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:50:24.428] Server  LOG     ✓ Compiled in 20ms
+[00:50:36.330] Server  LOG     ✓ Compiled in 21ms
+[00:50:51.581] Server  LOG     ✓ Compiled in 36ms
+[00:50:58.021] Server  LOG     ✓ Compiled in 20ms
+[00:51:03.967] Server  LOG     ✓ Compiled in 23ms
+[00:51:08.628] Server  LOG     ✓ Compiled in 22ms
+[00:51:15.516] Server  LOG     ✓ Compiled in 26ms
+[00:51:22.483] Server  LOG     ✓ Compiled in 23ms
+[00:51:23.320] Browser ERROR   ./src/components/admin/BookingsList.tsx:307:1
+Parsing ecmascript source code failed
+  305 |     </div>
+  306 |   );
+> 307 | }
+      | ^
+  308 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./src/components/admin/BookingsList.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/admin/BookingsList.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+[00:51:23.320] Browser ERROR   ./src/components/admin/BookingsList.tsx:307:1
+Parsing ecmascript source code failed
+  305 |     </div>
+  306 |   );
+> 307 | }
+      | ^
+  308 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./src/components/admin/BookingsList.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/admin/BookingsList.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+[00:51:23.320] Browser ERROR   ./src/components/admin/BookingsList.tsx:307:1
+Parsing ecmascript source code failed
+  305 |     </div>
+  306 |   );
+> 307 | }
+      | ^
+  308 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./src/components/admin/BookingsList.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/admin/BookingsList.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+[00:51:28.319] Browser ERROR   ./src/components/admin/BookingsList.tsx:307:1
+Parsing ecmascript source code failed
+  305 |     </div>
+  306 |   );
+> 307 | }
+      | ^
+  308 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./src/components/admin/BookingsList.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/admin/BookingsList.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+[00:51:28.319] Browser ERROR   ./src/components/admin/BookingsList.tsx:307:1
+Parsing ecmascript source code failed
+  305 |     </div>
+  306 |   );
+> 307 | }
+      | ^
+  308 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./src/components/admin/BookingsList.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/admin/BookingsList.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+[00:51:28.319] Browser ERROR   ./src/components/admin/BookingsList.tsx:307:1
+Parsing ecmascript source code failed
+  305 |     </div>
+  306 |   );
+> 307 | }
+      | ^
+  308 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./src/components/admin/BookingsList.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Client Component Browser]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/admin/BookingsList.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Client Component SSR]
+    ./src/app/admin/bookings/page.tsx [Server Component]
+[00:51:38.855] Server  LOG     ✓ Compiled in 21ms
+[00:52:37.710] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:54:17.305] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:54:24.082] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:25.655] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior

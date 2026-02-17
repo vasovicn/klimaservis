@@ -44,6 +44,7 @@ export async function PATCH(
   if (body.endTime !== undefined) data.endTime = body.endTime;
   if (body.date !== undefined) data.date = body.date;
   if (body.duration !== undefined) data.duration = body.duration;
+  if (body.userId !== undefined) data.userId = body.userId;
 
   const booking = await prisma.booking.update({
     where: { id },

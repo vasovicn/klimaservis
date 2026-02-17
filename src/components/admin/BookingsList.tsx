@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
+import BookingEditModal from "./BookingEditModal";
 
 interface Booking {
   id: string;
@@ -12,6 +13,8 @@ interface Booking {
   startTime: string;
   endTime: string;
   status: string;
+  duration: number;
+  userId: string;
   user: { firstName: string; lastName: string };
 }
 
@@ -64,6 +67,7 @@ export default function BookingsList({ refreshKey }: { refreshKey: number }) {
   const [pastDate, setPastDate] = useState("");
   const [pastBookings, setPastBookings] = useState<Booking[]>([]);
   const [pastLoading, setPastLoading] = useState(false);
+  const [editBooking, setEditBooking] = useState<Booking | null>(null);
 
   const fetchBookings = useCallback(() => {
     setLoading(true);
@@ -177,7 +181,11 @@ export default function BookingsList({ refreshKey }: { refreshKey: number }) {
           </thead>
           <tbody>
             {group.bookings.map((b) => (
-              <tr key={b.id} className="border-b border-gray-100">
+              <tr
+                key={b.id}
+                className="border-b border-gray-100 cursor-pointer hover:bg-gray-50"
+                onClick={() => setEditBooking(b)}
+              >
                 <td className="px-4 py-2.5 whitespace-nowrap">
                   {b.startTime} - {b.endTime}
                 </td>
@@ -198,7 +206,7 @@ export default function BookingsList({ refreshKey }: { refreshKey: number }) {
                   </span>
                 </td>
                 {!isPast && (
-                  <td className="px-4 py-2.5">
+                  <td className="px-4 py-2.5" onClick={(e) => e.stopPropagation()}>
                     {b.status === "confirmed" && b.date >= today && (
                       <div className="flex gap-1">
                         <button
@@ -234,6 +242,7 @@ export default function BookingsList({ refreshKey }: { refreshKey: number }) {
   }
 
   return (
+    <>
     <div className="space-y-6">
       {/* Current/future bookings */}
       {bookings.length === 0 ? (
@@ -294,5 +303,19 @@ export default function BookingsList({ refreshKey }: { refreshKey: number }) {
         )}
       </div>
     </div>
+
+    {editBooking && (
+      <BookingEditModal
+        booking={editBooking}
+        bookingDate={editBooking.date}
+        onClose={() => setEditBooking(null)}
+        onSaved={() => {
+          setEditBooking(null);
+          fetchBookings();
+          if (showPast && pastDate) fetchPastBookings();
+        }}
+      />
+    )}
+    </>
   );
 }

@@ -330,25 +330,54 @@ async function PATCH(request, { params }) {
             status: 400
         });
     }
-    const { status } = body;
-    if (!status || ![
-        "confirmed",
-        "completed",
-        "cancelled"
-    ].includes(status)) {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Neispravan status"
-        }, {
-            status: 400
-        });
+    const data = {};
+    if (body.status !== undefined) {
+        if (![
+            "confirmed",
+            "completed",
+            "cancelled"
+        ].includes(body.status)) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "Neispravan status"
+            }, {
+                status: 400
+            });
+        }
+        // Prevent cancelling past bookings
+        if (body.status === "cancelled") {
+            const existing = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].booking.findUnique({
+                where: {
+                    id
+                }
+            });
+            if (existing) {
+                const today = new Date();
+                const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+                if (existing.date < todayStr) {
+                    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                        error: "Ne možete otkazati prošle termine"
+                    }, {
+                        status: 400
+                    });
+                }
+            }
+        }
+        data.status = body.status;
     }
+    if (body.customerName !== undefined) data.customerName = body.customerName;
+    if (body.customerPhone !== undefined) data.customerPhone = body.customerPhone;
+    if (body.customerAddress !== undefined) data.customerAddress = body.customerAddress;
+    if (body.services !== undefined) data.services = body.services;
+    if (body.startTime !== undefined) data.startTime = body.startTime;
+    if (body.endTime !== undefined) data.endTime = body.endTime;
+    if (body.date !== undefined) data.date = body.date;
+    if (body.duration !== undefined) data.duration = body.duration;
+    if (body.userId !== undefined) data.userId = body.userId;
     const booking = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].booking.update({
         where: {
             id
         },
-        data: {
-            status
-        }
+        data
     });
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
         booking
@@ -356,6 +385,23 @@ async function PATCH(request, { params }) {
 }
 async function DELETE(_request, { params }) {
     const { id } = await params;
+    // Prevent deleting past bookings
+    const existing = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].booking.findUnique({
+        where: {
+            id
+        }
+    });
+    if (existing) {
+        const today = new Date();
+        const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+        if (existing.date < todayStr) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: "Ne možete obrisati prošle termine"
+            }, {
+                status: 400
+            });
+        }
+    }
     const booking = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["prisma"].booking.update({
         where: {
             id

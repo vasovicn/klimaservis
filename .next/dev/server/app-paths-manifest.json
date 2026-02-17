@@ -3,6 +3,8 @@
   "/admin/login/page": "app/admin/login/page.js",
   "/admin/schedule/page": "app/admin/schedule/page.js",
   "/admin/users/page": "app/admin/users/page.js",
+  "/api/admin/bookings/[id]/check-availability/route": "app/api/admin/bookings/[id]/check-availability/route.js",
+  "/api/admin/bookings/[id]/route": "app/api/admin/bookings/[id]/route.js",
   "/api/admin/bookings/route": "app/api/admin/bookings/route.js",
   "/api/admin/schedule/route": "app/api/admin/schedule/route.js",
   "/api/admin/users/route": "app/api/admin/users/route.js",
