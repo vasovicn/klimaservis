@@ -25,7 +25,10 @@
       "Bash(npx next build)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "WebFetch(domain:docs.turso.tech)",
+      "Bash(npx prisma migrate diff:*)",
+      "Bash(curl:*)"
     ]
   }
 }
