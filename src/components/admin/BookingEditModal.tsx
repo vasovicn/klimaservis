@@ -254,7 +254,7 @@ export default function BookingEditModal({
           )}
         </div>
 
-        <div className="mt-5 flex gap-2">
+        <div className="mt-5 flex flex-col gap-2 sm:flex-row">
           <button
             onClick={handleSave}
             disabled={saving}

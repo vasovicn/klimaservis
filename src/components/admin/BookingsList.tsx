@@ -158,12 +158,63 @@ export default function BookingsList({ refreshKey }: { refreshKey: number }) {
 
   const today = todayStr();
 
+  const renderBookingCard = (b: Booking, isPast: boolean) => (
+    <div
+      key={b.id}
+      onClick={() => setEditBooking(b)}
+      className="cursor-pointer rounded-xl border border-gray-200 bg-white p-4 hover:bg-gray-50"
+    >
+      <div className="mb-2 flex items-center justify-between">
+        <span className="text-sm font-semibold text-gray-900">{b.customerName}</span>
+        <span
+          className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
+            statusBadge[b.status] || ""
+          }`}
+        >
+          {statusLabel[b.status] || b.status}
+        </span>
+      </div>
+      <div className="space-y-1 text-sm text-gray-600">
+        <div className="flex justify-between">
+          <span>{b.startTime} - {b.endTime}</span>
+          <span>{b.user.firstName} {b.user.lastName}</span>
+        </div>
+        <div>{parseServices(b.services)}</div>
+        <div className="truncate">{b.customerPhone}</div>
+        <div className="truncate text-gray-400">{b.customerAddress}</div>
+      </div>
+      {!isPast && b.status === "confirmed" && b.date >= today && (
+        <div className="mt-3 flex gap-2" onClick={(e) => e.stopPropagation()}>
+          <button
+            onClick={() => updateStatus(b.id, "completed")}
+            className="rounded bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 hover:bg-green-200"
+          >
+            Završi
+          </button>
+          <button
+            onClick={() => updateStatus(b.id, "cancelled")}
+            className="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700 hover:bg-red-200"
+          >
+            Otkaži
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
   const renderTable = (group: { date: string; label: string; bookings: Booking[] }, isPast: boolean) => (
     <div key={group.date}>
       <h3 className="mb-2 text-sm font-semibold text-gray-700">
         {group.label}
       </h3>
-      <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
+
+      {/* Mobile card view */}
+      <div className="space-y-3 md:hidden">
+        {group.bookings.map((b) => renderBookingCard(b, isPast))}
+      </div>
+
+      {/* Desktop table view */}
+      <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-200 bg-white">
         <table className="w-full min-w-[800px] text-sm">
           <thead>
             <tr className="border-b border-gray-200 bg-gray-50">
@@ -267,25 +318,27 @@ export default function BookingsList({ refreshKey }: { refreshKey: number }) {
           </button>
         ) : (
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
               <label className="text-sm font-medium text-gray-700">Prošli termini za datum:</label>
-              <input
-                type="date"
-                value={pastDate}
-                max={today}
-                onChange={(e) => setPastDate(e.target.value)}
-                className="rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-brand-500"
-              />
-              <button
-                onClick={() => {
-                  setShowPast(false);
-                  setPastDate("");
-                  setPastBookings([]);
-                }}
-                className="rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-200"
-              >
-                Sakrij
-              </button>
+              <div className="flex gap-2">
+                <input
+                  type="date"
+                  value={pastDate}
+                  max={today}
+                  onChange={(e) => setPastDate(e.target.value)}
+                  className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-brand-500 sm:flex-none"
+                />
+                <button
+                  onClick={() => {
+                    setShowPast(false);
+                    setPastDate("");
+                    setPastBookings([]);
+                  }}
+                  className="rounded-lg bg-gray-100 px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-200"
+                >
+                  Sakrij
+                </button>
+              </div>
             </div>
 
             {pastLoading ? (

@@ -32,14 +32,14 @@ export default function UsersPage() {
 
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Korisnici</h1>
+      <div className="mb-4 flex items-center justify-between gap-3 md:mb-6">
+        <h1 className="text-xl font-bold text-gray-900 md:text-2xl">Korisnici</h1>
         <button
           onClick={() => {
             setEditUser(null);
             setShowForm(true);
           }}
-          className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600"
+          className="shrink-0 rounded-lg bg-brand-500 px-3 py-2 text-sm font-semibold text-white hover:bg-brand-600 md:px-4"
         >
           + Novi korisnik
         </button>
