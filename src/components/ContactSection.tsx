@@ -1,4 +1,7 @@
+"use client";
+
 import { PHONE_HREF, PHONE_DISPLAY } from "@/lib/constants";
+import BookingButton from "./booking/BookingButton";
 
 export default function ContactSection() {
   return (
@@ -11,8 +14,8 @@ export default function ContactSection() {
           Potreban vam je klima servis?
         </h2>
         <p className="mb-10 text-lg text-brand-100">
-          Pozovite nas i zakažite termin. Brz dolazak, profesionalna usluga i
-          garancija na sav rad.
+          Pozovite nas ili zakažite termin online. Brz dolazak, profesionalna
+          usluga i garancija na sav rad.
         </p>
         <a
           href={PHONE_HREF}
@@ -33,6 +36,9 @@ export default function ContactSection() {
           </svg>
           {PHONE_DISPLAY}
         </a>
+        <div className="mt-6">
+          <BookingButton variant="contact" />
+        </div>
         <div className="mt-10 text-brand-200">
           <p className="text-sm font-medium uppercase tracking-wider">
             Radno vreme

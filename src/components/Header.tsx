@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { COMPANY_NAME, PHONE_HREF, PHONE_DISPLAY } from "@/lib/constants";
+import { COMPANY_NAME } from "@/lib/constants";
+import BookingButton from "./booking/BookingButton";
 
 const navLinks = [
   { label: "Početna", href: "#pocetna" },
@@ -51,12 +52,7 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a
-            href={PHONE_HREF}
-            className="rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-600 hover:shadow-lg"
-          >
-            Pozovite nas
-          </a>
+          <BookingButton variant="header" />
         </div>
 
         {/* Mobile hamburger */}
@@ -102,12 +98,9 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a
-            href={PHONE_HREF}
-            className="mt-2 block rounded-full bg-brand-500 px-5 py-2 text-center text-sm font-semibold text-white"
-          >
-            {PHONE_DISPLAY}
-          </a>
+          <div className="mt-2">
+            <BookingButton variant="card" featured />
+          </div>
         </div>
       )}
     </header>

@@ -1,4 +1,6 @@
-import { PHONE_HREF } from "@/lib/constants";
+"use client";
+
+import BookingButton from "./booking/BookingButton";
 
 const services = [
   {
@@ -98,16 +100,7 @@ export default function PricingSection() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={PHONE_HREF}
-                className={`block w-full rounded-full py-3 text-center font-semibold transition-colors ${
-                  service.featured
-                    ? "bg-brand-500 text-white hover:bg-brand-600"
-                    : "bg-brand-50 text-brand-700 hover:bg-brand-100"
-                }`}
-              >
-                Zakažite servis
-              </a>
+              <BookingButton variant="card" featured={service.featured} />
             </div>
           ))}
         </div>

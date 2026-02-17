@@ -1,3 +1,15 @@
 {
+  "/admin/bookings/page": "app/admin/bookings/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/schedule/page": "app/admin/schedule/page.js",
+  "/admin/users/page": "app/admin/users/page.js",
+  "/api/admin/bookings/route": "app/api/admin/bookings/route.js",
+  "/api/admin/schedule/route": "app/api/admin/schedule/route.js",
+  "/api/admin/users/route": "app/api/admin/users/route.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/auth/logout/route": "app/api/auth/logout/route.js",
+  "/api/auth/me/route": "app/api/auth/me/route.js",
+  "/api/booking/route": "app/api/booking/route.js",
+  "/api/slots/route": "app/api/slots/route.js",
   "/page": "app/page.js"
 }
