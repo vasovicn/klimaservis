@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { SERVICES } from "@/lib/services";
 import type { BookingData } from "./BookingWizard";
+import ServiceChat from "./ServiceChat";
 
 export default function StepServices({
   data,
@@ -12,12 +14,28 @@ export default function StepServices({
   update: (d: Partial<BookingData>) => void;
   next: () => void;
 }) {
+  const [showChat, setShowChat] = useState(false);
+
   const toggle = (id: string) => {
     const services = data.services.includes(id)
       ? data.services.filter((s) => s !== id)
       : [...data.services, id];
     update({ services });
   };
+
+  const handleServicesFound = (services: string[]) => {
+    update({ services });
+    next();
+  };
+
+  if (showChat) {
+    return (
+      <ServiceChat
+        onServicesFound={handleServicesFound}
+        onBack={() => setShowChat(false)}
+      />
+    );
+  }
 
   return (
     <div>
@@ -93,6 +111,16 @@ export default function StepServices({
         className="mt-6 w-full rounded-full bg-brand-500 py-3 font-semibold text-white transition-colors hover:bg-brand-600 disabled:cursor-not-allowed disabled:bg-gray-300"
       >
         Dalje
+      </button>
+
+      <button
+        onClick={() => setShowChat(true)}
+        className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border-2 border-dashed border-gray-300 py-2.5 text-sm font-medium text-gray-500 transition-colors hover:border-brand-300 hover:text-brand-600"
+      >
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Nisam siguran/na šta mi treba
       </button>
     </div>
   );
