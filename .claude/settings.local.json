@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(where:*)",
+      "Bash(nvm list:*)",
+      "Bash(nvm use:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(xcopy:*)",
+      "Bash(npx prisma init:*)",
+      "Bash(npx prisma db push:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
