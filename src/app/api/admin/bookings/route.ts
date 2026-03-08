@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { calculateDuration, validateServiceIds } from "@/lib/services";
 import { calculateEndTime } from "@/lib/slots";
+import { sendBookingNotification } from "@/lib/mailer";
 
 export async function GET(request: NextRequest) {
   const role = request.headers.get("x-user-role");
@@ -92,6 +93,19 @@ export async function POST(request: NextRequest) {
       userId,
     },
   });
+
+  // Slanje notifikacionog mejla (ne blokira odgovor ako ne uspe)
+  sendBookingNotification({
+    customerName,
+    customerPhone,
+    customerAddress,
+    services,
+    date,
+    startTime,
+    endTime,
+    duration,
+    source: "admin",
+  }).catch((err) => console.error("Mail greška:", err));
 
   return NextResponse.json({ booking }, { status: 201 });
 }

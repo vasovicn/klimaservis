@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { calculateDuration, validateServiceIds } from "@/lib/services";
 import { assignServiser, calculateEndTime } from "@/lib/slots";
+import { sendBookingNotification } from "@/lib/mailer";
 
 export async function POST(request: NextRequest) {
   let body;
@@ -58,6 +59,19 @@ export async function POST(request: NextRequest) {
       userId,
     },
   });
+
+  // Slanje notifikacionog mejla (ne blokira odgovor ako ne uspe)
+  sendBookingNotification({
+    customerName,
+    customerPhone,
+    customerAddress,
+    services,
+    date,
+    startTime,
+    endTime,
+    duration,
+    source: "online",
+  }).catch((err) => console.error("Mail greška:", err));
 
   return NextResponse.json({ id: booking.id }, { status: 201 });
 }
