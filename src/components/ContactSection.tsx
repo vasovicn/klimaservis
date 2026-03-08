@@ -7,6 +7,7 @@ export default function ContactSection() {
   return (
     <section
       id="kontakt"
+      aria-label="Kontakt i zakazivanje klima servisa"
       className="bg-gradient-to-br from-brand-700 to-brand-900 px-4 py-20 text-center text-white sm:py-28"
     >
       <div className="mx-auto max-w-3xl">
@@ -44,7 +45,7 @@ export default function ContactSection() {
             Radno vreme
           </p>
           <p className="mt-2 text-lg">
-            Ponedeljak - Subota: 08:00 - 20:00
+            Ponedeljak - Subota: 08:00 - 22:00
           </p>
         </div>
       </div>

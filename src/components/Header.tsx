@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { COMPANY_NAME } from "@/lib/constants";
+import Image from "next/image";
 import BookingButton from "./booking/BookingButton";
 
 const navLinks = [
@@ -24,19 +24,21 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 shadow-lg backdrop-blur-md"
+        scrolled || menuOpen
+          ? "bg-[#1a3a9a]/95 shadow-lg backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a
-          href="#pocetna"
-          className={`text-lg font-bold transition-colors ${
-            scrolled ? "text-brand-700" : "text-white"
-          }`}
-        >
-          {COMPANY_NAME}
+      <nav aria-label="Glavna navigacija" className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <a href="#pocetna" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Beogradski Klima Servis"
+            width={980}
+            height={336}
+            className="h-[100px] w-auto object-contain"
+            priority
+          />
         </a>
 
         {/* Desktop nav */}
@@ -46,7 +48,7 @@ export default function Header() {
               key={link.href + link.label}
               href={link.href}
               className={`text-sm font-medium transition-colors hover:text-brand-400 ${
-                scrolled ? "text-gray-700" : "text-white/90"
+                scrolled ? "text-white/90" : "text-white/90"
               }`}
             >
               {link.label}
@@ -58,7 +60,7 @@ export default function Header() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className={`md:hidden ${scrolled ? "text-gray-700" : "text-white"}`}
+          className="md:hidden text-white"
           aria-label="Meni"
         >
           <svg
@@ -87,19 +89,19 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-gray-100 bg-white px-4 py-4 shadow-lg md:hidden">
+        <div className="border-t border-[#1a3a9a] bg-[#1a3a9a] px-4 py-4 shadow-lg md:hidden">
           {navLinks.map((link) => (
             <a
               key={link.href + link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="block py-2 text-sm font-medium text-gray-700 hover:text-brand-600"
+              className="block py-2 text-sm font-medium text-white hover:text-brand-200"
             >
               {link.label}
             </a>
           ))}
           <div className="mt-2">
-            <BookingButton variant="card" featured />
+            <BookingButton variant="mobile" />
           </div>
         </div>
       )}

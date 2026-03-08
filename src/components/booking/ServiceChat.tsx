@@ -1,15 +1,17 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { SERVICES } from "@/lib/services";
 
 const SERVICE_KEYWORD_MAP: Record<string, string> = {
-  mali: "mali",
-  "mali servis": "mali",
-  veliki: "veliki",
-  "veliki servis": "veliki",
-  kondenzator: "kondenzator",
-  "zamena kondenzatora": "kondenzator",
+  redovan: "redovan",
+  "redovan godisnji servis": "redovan",
+  "redovan servis": "redovan",
+  dubinski: "dubinski",
+  "dubinski servis": "dubinski",
+  freon: "freon",
+  "dopuna freona": "freon",
+  popravka: "popravka",
+  "popravka kvara": "popravka",
 };
 
 /** Try to match an option string to a service ID */
@@ -123,15 +125,22 @@ export default function ServiceChat({
     sendMessage(option);
   };
 
-  const handleServiceSelect = (serviceId: string) => {
-    onServicesFound([serviceId]);
-  };
-
   // Determine if options are actually service choices
   const serviceOptionIds =
     lastAssistant?.type === "options" && lastAssistant.options?.length
       ? allOptionsAreServices(lastAssistant.options)
       : null;
+
+  // Auto-proceed to solutions when AI has determined the services
+  useEffect(() => {
+    if (loading) return;
+    if (lastAssistant?.type === "services_found" && lastAssistant.services?.length) {
+      onServicesFound(lastAssistant.services);
+    } else if (serviceOptionIds) {
+      onServicesFound(serviceOptionIds);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastAssistant, loading]);
 
   return (
     <div className="flex flex-col" style={{ minHeight: "320px" }}>
@@ -188,33 +197,6 @@ export default function ServiceChat({
 
       {/* Input area */}
 
-      {/* Options that are services → show as service cards, click = select + next */}
-      {lastAssistant?.type === "options" && serviceOptionIds && !loading && (
-        <div className="space-y-2">
-          {serviceOptionIds.map((sid) => {
-            const svc = SERVICES.find((s) => s.id === sid);
-            if (!svc) return null;
-            return (
-              <button
-                key={sid}
-                onClick={() => handleServiceSelect(sid)}
-                className="w-full rounded-xl border-2 border-gray-200 p-4 text-left transition-all hover:border-brand-500 hover:bg-brand-50"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-gray-900">{svc.name}</div>
-                    <div className="text-xs text-gray-500">{svc.description}</div>
-                  </div>
-                  <span className="text-lg font-bold text-brand-600">
-                    {svc.price} <span className="text-sm font-normal text-gray-400">RSD</span>
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      )}
-
       {/* Options that are NOT services → show as regular chat option buttons */}
       {lastAssistant?.type === "options" && !serviceOptionIds && !loading && (
         <div className="flex flex-wrap gap-2">
@@ -250,32 +232,6 @@ export default function ServiceChat({
             </svg>
           </button>
         </form>
-      )}
-
-      {lastAssistant?.type === "services_found" && lastAssistant.services && !loading && (
-        <div className="space-y-2">
-          {lastAssistant.services.map((sid) => {
-            const svc = SERVICES.find((s) => s.id === sid);
-            if (!svc) return null;
-            return (
-              <button
-                key={sid}
-                onClick={() => handleServiceSelect(sid)}
-                className="w-full rounded-xl border-2 border-gray-200 p-4 text-left transition-all hover:border-brand-500 hover:bg-brand-50"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-gray-900">{svc.name}</div>
-                    <div className="text-xs text-gray-500">{svc.description}</div>
-                  </div>
-                  <span className="text-lg font-bold text-brand-600">
-                    {svc.price} <span className="text-sm font-normal text-gray-400">RSD</span>
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </div>
       )}
 
       {lastAssistant?.type === "end_chat" && !loading && (

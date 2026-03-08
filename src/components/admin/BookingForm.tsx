@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { SERVICES } from "@/lib/services";
+import { SERVICES, calculateDuration } from "@/lib/services";
 
 interface Serviser {
   id: string;
@@ -31,12 +31,16 @@ export default function BookingForm({
   const [customerAddress, setCustomerAddress] = useState("");
   const [userId, setUserId] = useState(prefillServiserId || "");
   const [customDuration, setCustomDuration] = useState(30);
+  const [durationOverride, setDurationOverride] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [currentUserRole, setCurrentUserRole] = useState("");
   const [currentUserId, setCurrentUserId] = useState("");
 
   const hasOstalo = services.includes("ostalo");
+  const autoDuration = hasOstalo || durationOverride
+    ? customDuration
+    : (services.length > 0 ? calculateDuration(services.filter(s => s !== "ostalo")) : 30);
 
   useEffect(() => {
     // Fetch current user info
@@ -83,6 +87,7 @@ export default function BookingForm({
     setServices((prev) =>
       prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
     );
+    setDurationOverride(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -102,7 +107,7 @@ export default function BookingForm({
           customerPhone,
           customerAddress,
           userId,
-          ...(hasOstalo ? { customDuration } : {}),
+          customDuration: durationOverride || hasOstalo ? customDuration : autoDuration,
         }),
       });
 
@@ -161,22 +166,26 @@ export default function BookingForm({
             </div>
           </div>
 
-          {hasOstalo && (
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
-                Trajanje (minuti)
-              </label>
-              <input
-                type="number"
-                value={customDuration}
-                onChange={(e) => setCustomDuration(Number(e.target.value))}
-                min={15}
-                step={15}
-                required
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-brand-500"
-              />
-            </div>
-          )}
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              Trajanje (minuti)
+            </label>
+            <input
+              type="number"
+              value={durationOverride || hasOstalo ? customDuration : autoDuration}
+              onChange={(e) => {
+                setCustomDuration(Number(e.target.value));
+                setDurationOverride(true);
+              }}
+              min={15}
+              step={15}
+              required
+              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 outline-none focus:border-brand-500"
+            />
+            {!durationOverride && !hasOstalo && services.length > 0 && (
+              <p className="mt-1 text-xs text-gray-400">Automatski izračunato na osnovu usluga</p>
+            )}
+          </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>

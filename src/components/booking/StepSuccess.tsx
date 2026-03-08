@@ -13,9 +13,9 @@ export default function StepSuccess({
 }) {
   const { close } = useBooking();
 
-  const serviceNames = data.services
-    .map((id) => SERVICES.find((s) => s.id === id)?.name ?? id)
-    .join(", ");
+  const selectedServices = data.services
+    .map((id) => SERVICES.find((s) => s.id === id))
+    .filter(Boolean) as typeof SERVICES;
 
   return (
     <div className="py-6 text-center">
@@ -35,37 +35,54 @@ export default function StepSuccess({
         </svg>
       </div>
 
-      <h2 className="mb-2 text-xl font-bold text-gray-900">
-        Uspešno ste zakazali servis!
+      <h2 className="mb-1 text-xl font-bold text-gray-900">
+        Termin uspešno zakazan!
       </h2>
-      <p className="mb-6 text-sm text-gray-500">
-        Potvrda termina biće poslata telefonom.
-      </p>
+      <div className="mb-6" />
 
-      <div className="mx-auto max-w-xs space-y-2 rounded-xl bg-gray-50 p-4 text-left text-sm">
-        <div className="flex justify-between">
-          <span className="text-gray-500">Usluge:</span>
-          <span className="font-medium text-gray-900">{serviceNames}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500">Datum:</span>
-          <span className="font-medium text-gray-900">{data.date}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500">Vreme:</span>
-          <span className="font-medium text-gray-900">{data.startTime}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500">Ime:</span>
-          <span className="font-medium text-gray-900">
-            {data.customerName}
+      <div className="rounded-xl bg-gray-50 p-4 text-left text-sm space-y-3">
+        {/* Date & time */}
+        <div className="flex items-center justify-between">
+          <span className="text-gray-500">Datum i vreme</span>
+          <span className="font-semibold text-gray-900">
+            {data.date} u {data.startTime}
           </span>
         </div>
-        <div className="flex justify-between">
-          <span className="text-gray-500">Telefon:</span>
-          <span className="font-medium text-gray-900">
-            {data.customerPhone}
+
+        <div className="border-t border-gray-200" />
+
+        {/* Services */}
+        <div>
+          <span className="text-gray-500">
+            {selectedServices.length === 1 ? "Usluga" : "Potencijalna rešenja problema"}
           </span>
+          <div className="mt-1.5 space-y-1">
+            {selectedServices.map((s) => (
+              <div
+                key={s.id}
+                className="flex items-center justify-between rounded-lg bg-white px-3 py-2 shadow-sm"
+              >
+                <span className="font-medium text-gray-900">{s.name}</span>
+                <span className="text-xs text-brand-600 font-semibold">{s.price} RSD</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-gray-200" />
+
+        {/* Contact */}
+        <div className="flex items-center justify-between">
+          <span className="text-gray-500">Ime</span>
+          <span className="font-semibold text-gray-900">{data.customerName}</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-gray-500">Telefon</span>
+          <span className="font-semibold text-gray-900">{data.customerPhone}</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-gray-500">Adresa</span>
+          <span className="font-semibold text-gray-900 text-right">{data.customerAddress}</span>
         </div>
       </div>
 
@@ -74,7 +91,7 @@ export default function StepSuccess({
           reset();
           close();
         }}
-        className="mt-6 rounded-full bg-brand-500 px-8 py-3 font-semibold text-white transition-colors hover:bg-brand-600"
+        className="mt-6 w-full rounded-full bg-brand-500 py-3 font-semibold text-white transition-colors hover:bg-brand-600"
       >
         Zatvori
       </button>

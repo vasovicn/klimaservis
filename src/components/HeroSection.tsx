@@ -7,13 +7,14 @@ export default function HeroSection() {
     return (
         <section
             id="pocetna"
+            aria-label="Beogradski Klima Servis – Profesionalni servis klima uređaja"
             className="relative min-h-screen bg-[url('/hero-bg.png')] bg-cover bg-center bg-no-repeat text-white"
         >
             {/* Dark overlay */}
-            <div className="absolute inset-0 bg-brand-900/75"/>
+            <div aria-hidden="true" className="absolute inset-0 bg-brand-900/75"/>
 
             {/* Blur decorative shapes */}
-            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-white/10 blur-3xl"/>
                 <div className="absolute -bottom-32 -left-32 h-[500px] w-[500px] rounded-full bg-white/10 blur-3xl"/>
             </div>
@@ -21,12 +22,13 @@ export default function HeroSection() {
             <div className="relative z-10 flex min-h-screen flex-col justify-center px-4 py-32">
                 {/* HERO CONTENT */}
                 <div className="mx-auto max-w-4xl text-center">
-                    <h1 className="mb-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-                        Profesionalni klima servis
-                        <span className="block text-brand-200">
-              u Beogradu
-            </span>
+                    <h1 className="mb-3 mt-16 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                        Beogradski Klima Servis
                     </h1>
+
+                    <p className="mb-6 text-xl font-semibold text-brand-200 sm:text-2xl">
+                        Profesionalni klima servis
+                    </p>
 
                     <p className="mx-auto mb-10 max-w-2xl text-lg text-brand-100 sm:text-xl">
                         Servis, popravka i čišćenje klima uređaja. Brzo,

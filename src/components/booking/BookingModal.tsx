@@ -1,10 +1,20 @@
 "use client";
 
+import { useEffect } from "react";
 import { useBooking } from "./BookingContext";
 import BookingWizard from "./BookingWizard";
 
 export default function BookingModal() {
   const { isOpen, close } = useBooking();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 

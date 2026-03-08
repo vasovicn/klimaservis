@@ -1,6 +1,6 @@
 import { prisma } from "./prisma";
 
-const DAY_START = 7 * 60; // 07:00 in minutes
+const DAY_START = 8 * 60; // 08:00 in minutes
 const DAY_END = 22 * 60; // 22:00 in minutes
 const SLOT_INTERVAL = 30; // minutes
 const BUFFER = 30; // minutes before and after each booking

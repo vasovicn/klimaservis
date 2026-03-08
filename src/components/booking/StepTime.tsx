@@ -33,9 +33,9 @@ export default function StepTime({
       });
   }, [data.date, data.services]);
 
-  // Generate all possible time slots for display (07:00–22:00)
+  // Generate all possible time slots for display (08:00–22:00)
   const allSlots: string[] = [];
-  for (let h = 7; h < 22; h++) {
+  for (let h = 8; h < 22; h++) {
     allSlots.push(`${String(h).padStart(2, "0")}:00`);
     allSlots.push(`${String(h).padStart(2, "0")}:30`);
   }

@@ -28,7 +28,10 @@
       "Bash(git push:*)",
       "WebFetch(domain:docs.turso.tech)",
       "Bash(npx prisma migrate diff:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git rm:*)",
+      "Bash(grep:*)",
+      "Bash(cmd:*)"
     ]
   }
 }

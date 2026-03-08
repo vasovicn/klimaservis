@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useBooking } from "./BookingContext";
 import { PHONE_HREF, PHONE_DISPLAY } from "@/lib/constants";
 
-type Variant = "hero" | "header" | "card" | "contact";
+type Variant = "hero" | "header" | "card" | "contact" | "mobile";
 
 const variantStyles: Record<Variant, { button: string; dropdown: string }> = {
   hero: {
@@ -12,9 +12,14 @@ const variantStyles: Record<Variant, { button: string; dropdown: string }> = {
       "inline-flex items-center gap-2 rounded-full bg-white px-10 py-4 text-lg font-bold text-brand-700 shadow-xl transition-all hover:bg-brand-50 hover:shadow-2xl",
     dropdown: "mt-2 w-80",
   },
+  mobile: {
+    button:
+      "block w-full rounded-full bg-white px-4 py-3.5 text-center font-semibold text-brand-700 transition-colors hover:bg-brand-50",
+    dropdown: "mt-2 w-full",
+  },
   header: {
     button:
-      "rounded-full bg-brand-500 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-600 hover:shadow-lg whitespace-nowrap",
+      "rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-brand-700 shadow-md transition-all hover:bg-brand-50 hover:shadow-lg whitespace-nowrap",
     dropdown: "mt-2 w-72 right-0",
   },
   card: {
