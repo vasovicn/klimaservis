@@ -7,4 +7,4 @@ prompts.txt
 /src/generated/prisma
 
 *.db
-.next
+.nextid_rsa.ppk
