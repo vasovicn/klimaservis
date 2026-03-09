@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    turbopack: false,
-  },
   compress: true,
   poweredByHeader: false,
   generateEtags: true,
