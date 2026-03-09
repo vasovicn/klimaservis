@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    cpus: 1,
+  },
   serverExternalPackages: [
     "@prisma/client",
     "@prisma/adapter-libsql",
