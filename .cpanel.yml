@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bgdklima/repositories/klimaservis/
+    - /usr/local/bin/npm install --prefer-offline
+    - /usr/local/bin/npm run build
