@@ -1,9 +1,10 @@
 import { COMPANY_NAME, PHONE_HREF, PHONE_DISPLAY } from "@/lib/constants";
 
 const footerLinks = [
-  { label: "Početna", href: "#pocetna" },
-  { label: "Cene", href: "#cene" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Početna", href: "/#pocetna" },
+  { label: "Servis klime Beograd", href: "/servis" },
+  { label: "Cene", href: "/#cene" },
+  { label: "Kontakt", href: "/#kontakt" },
 ];
 
 export default function Footer() {
@@ -19,7 +20,7 @@ export default function Footer() {
         </div>
 
         {/* Navigacija */}
-        <div>
+        <nav aria-label="Footer navigacija">
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
             Navigacija
           </p>
@@ -35,7 +36,7 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
         {/* Radno vreme */}
         <div>

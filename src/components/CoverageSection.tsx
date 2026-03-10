@@ -20,7 +20,7 @@ const municipalities = [
 
 export default function CoverageSection() {
   return (
-    <section className="bg-white px-4 py-20 sm:py-28">
+    <section aria-label="Područja pokrivenosti klima servisa u Beogradu" className="bg-white px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl text-center">
         <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
           Pokrivamo ceo Beograd

@@ -79,6 +79,8 @@ export default function PricingSection() {
                   : "border border-gray-200 bg-white shadow-md"
               }`}
             >
+              <meta itemProp="areaServed" content="Beograd" />
+              <meta itemProp="provider" content="Beogradski Klima Servis" />
               {service.featured && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-500 px-4 py-1 text-xs font-bold tracking-wider text-white uppercase">
                   Najpopularniji

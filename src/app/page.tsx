@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <BookingProvider>
       <Header />
-      <main>
+      <main aria-label="Beogradski Klima Servis – Servis klima uređaja u Beogradu">
         <HeroSection />
         <PricingSection />
         <CoverageSection />

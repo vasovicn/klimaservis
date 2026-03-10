@@ -5,10 +5,10 @@ import Image from "next/image";
 import BookingButton from "./booking/BookingButton";
 
 const navLinks = [
-  { label: "Početna", href: "#pocetna" },
-  { label: "Usluge", href: "#cene" },
-  { label: "Cene", href: "#cene" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Početna", href: "/#pocetna" },
+  { label: "Servis klime", href: "/servis" },
+  { label: "Cene", href: "/#cene" },
+  { label: "Kontakt", href: "/#kontakt" },
 ];
 
 export default function Header() {

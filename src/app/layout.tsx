@@ -64,22 +64,15 @@ export const metadata: Metadata = {
     siteName: COMPANY_NAME,
     locale: "sr_RS",
     type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Beogradski Klima Servis – Profesionalni servis klima uređaja u Beogradu",
-        type: "image/jpeg",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Klima Servis Beograd | Servis i popravka klima uređaja",
     description:
       "Profesionalni klima servis u Beogradu. Popravka, čišćenje i održavanje klima uređaja. Pozovite 062 103 8009.",
-    images: ["/og-image.jpg"],
+  },
+  other: {
+    "theme-color": "#1a3a9a",
   },
   robots: {
     index: true,
@@ -115,7 +108,7 @@ const localBusinessSchema = {
   url: SITE_URL,
   telephone: PHONE_NUMBER,
   email: "kontakt@beogradskiklimaservis.rs",
-  image: `${SITE_URL}/og-image.jpg`,
+  image: `${SITE_URL}/opengraph-image`,
   logo: `${SITE_URL}/logo.png`,
   address: {
     "@type": "PostalAddress",
@@ -177,11 +170,12 @@ const localBusinessSchema = {
           "Čišćenje filtera, dezinfekcija unutrašnje jedinice, provera nivoa freona, provera drenažnog sistema i vizuelna kontrola svih komponenti.",
         price: "4000",
         priceCurrency: "RSD",
-        areaServed: "Beograd",
+        availability: "https://schema.org/InStock",
+        areaServed: { "@type": "City", name: "Beograd" },
         itemOffered: {
           "@type": "Service",
           name: "Redovan godišnji servis klime",
-          serviceType: "HVAC Maintenance",
+          serviceType: "Air Conditioning Maintenance",
         },
       },
       {
@@ -191,22 +185,24 @@ const localBusinessSchema = {
           "Kompletno čišćenje unutrašnje i spoljašnje jedinice, dijagnostika uzroka problema, dezinfekcija i antibakterijski tretman.",
         price: "6000",
         priceCurrency: "RSD",
-        areaServed: "Beograd",
+        availability: "https://schema.org/InStock",
+        areaServed: { "@type": "City", name: "Beograd" },
         itemOffered: {
           "@type": "Service",
           name: "Dubinski servis klime",
-          serviceType: "HVAC Deep Cleaning",
+          serviceType: "Air Conditioning Deep Cleaning",
         },
       },
       {
         "@type": "Offer",
-        name: "Dopuna freona",
+        name: "Dopuna freona klime",
         description:
           "Merenje nivoa freona, provera curenja sistema i dopuna odgovarajuće količine freona.",
         lowPrice: "3500",
         highPrice: "6000",
         priceCurrency: "RSD",
-        areaServed: "Beograd",
+        availability: "https://schema.org/InStock",
+        areaServed: { "@type": "City", name: "Beograd" },
         itemOffered: {
           "@type": "Service",
           name: "Dopuna freona klima uređaja",
@@ -221,11 +217,12 @@ const localBusinessSchema = {
         lowPrice: "3500",
         highPrice: "12000",
         priceCurrency: "RSD",
-        areaServed: "Beograd",
+        availability: "https://schema.org/InStock",
+        areaServed: { "@type": "City", name: "Beograd" },
         itemOffered: {
           "@type": "Service",
           name: "Popravka kvara klima uređaja",
-          serviceType: "HVAC Repair",
+          serviceType: "Air Conditioning Repair",
         },
       },
     ],
@@ -295,6 +292,13 @@ export default function RootLayout({
   return (
     <html lang="sr" dir="ltr">
       <head>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2VMKLWYTM" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-Z2VMKLWYTM');`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

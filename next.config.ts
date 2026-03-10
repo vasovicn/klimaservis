@@ -33,6 +33,13 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Block search engine indexing for admin routes
+        source: "/admin/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      },
+      {
         // Cache static assets aggressively
         source: "/(.*)\\.(ico|png|jpg|jpeg|svg|webp|avif|woff|woff2)",
         headers: [
