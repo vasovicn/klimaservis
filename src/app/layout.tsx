@@ -229,61 +229,6 @@ const localBusinessSchema = {
   },
 };
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Koliko košta servis klima uređaja u Beogradu?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Redovan godišnji servis klime košta 4.000 RSD, a dubinski servis 6.000 RSD. Dopuna freona kreće se od 3.500 do 6.000 RSD u zavisnosti od količine freona. Popravka kvara kreće se od 3.500 do 12.000 RSD.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Koliko traje servis klima uređaja?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Redovan godišnji servis traje oko 30 minuta, dok dubinski servis, dopuna freona i popravka kvara traju oko 45 minuta, u zavisnosti od tipa i stanja uređaja.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Kada treba uraditi servis klime?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Preporučuje se jednom godišnje, idealno pre letnje sezone. Servis je hitno potreban ako klima slabo hladi, curi voda, ima neprijatne mirise, neobične zvukove ili preveliku potrošnju struje.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Da li dolazite na adresu u celom Beogradu?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `Da, vršimo servis klima uređaja na teritoriji celog Beograda – Novi Beograd, Zemun, Vračar, Palilula, Zvezdara, Čukarica, Voždovac, Rakovica i svi ostali delovi grada. Pozovite nas na ${PHONE_DISPLAY}.`,
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Šta uključuje redovan godišnji servis klime?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Redovan godišnji servis uključuje čišćenje filtera, dezinfekciju unutrašnje jedinice, proveru nivoa freona, proveru drenažnog sistema i vizuelnu kontrolu svih komponenti.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Da li dajete garanciju na servis?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Da, dajemo garanciju na sav izvršeni rad. Koristimo originalne i kvalitetne rezervne delove.",
-      },
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -302,10 +247,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
