@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Beogradski Klima Servis",
   },
   description:
-    "Profesionalni klima servis u Beogradu. Redovan servis 4.000 RSD, dubinski servis 6.000 RSD. Popravka, čišćenje i održavanje klima uređaja na teritoriji celog Beograda. Pozovite: 062 103 8009.",
+    "Profesionalni klima servis u Beogradu. Online zakazivanje dostupno. Redovan servis 4.000 RSD, dubinski servis 6.000 RSD. Popravka, čišćenje i održavanje klima uređaja na teritoriji celog Beograda. Pozovite: 062 103 8009.",
   keywords: [
     "klima servis beograd",
     "servis klima uređaja beograd",
@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     "hitna popravka klime beograd",
     "klima servis beograd 062",
     "beogradski klima servis",
+    "online zakazivanje servisa klime",
+    "zakazi servis klime online",
+    "zakazivanje klima servis beograd",
   ],
   authors: [{ name: COMPANY_NAME, url: SITE_URL }],
   creator: COMPANY_NAME,
@@ -157,6 +160,22 @@ const localBusinessSchema = {
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       opens: "08:00",
       closes: "22:00",
+    },
+  },
+  potentialAction: {
+    "@type": "ReserveAction",
+    name: "Zakažite servis klime online",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/zakazivanje`,
+      actionPlatform: [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform",
+      ],
+    },
+    result: {
+      "@type": "Reservation",
+      name: "Termin za servis klima uređaja",
     },
   },
   hasOfferCatalog: {
