@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useBooking } from "./BookingContext";
 import { PHONE_HREF, PHONE_DISPLAY } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 type Variant = "hero" | "header" | "card" | "contact" | "mobile";
 
@@ -77,7 +78,14 @@ export default function BookingButton({
           <a
             href={PHONE_HREF}
             className="flex items-center gap-3 rounded-lg px-4 py-3.5 text-gray-700 transition-colors hover:bg-brand-50"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+              trackEvent("phone_click", {
+                value: 2500,
+                currency: "RSD",
+                source: `booking_dropdown_${variant}`,
+              });
+            }}
           >
             <svg
               className="h-5 w-5 shrink-0 text-brand-500"
@@ -100,6 +108,11 @@ export default function BookingButton({
           <button
             onClick={() => {
               setOpen(false);
+              trackEvent("open_booking_modal", {
+                value: 500,
+                currency: "RSD",
+                source: variant,
+              });
               openBooking();
             }}
             className="flex w-full items-center gap-3 rounded-lg px-4 py-3.5 text-gray-700 transition-colors hover:bg-brand-50"

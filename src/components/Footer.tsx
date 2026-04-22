@@ -1,4 +1,7 @@
+"use client";
+
 import { COMPANY_NAME, PHONE_HREF, PHONE_DISPLAY } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 const footerLinks = [
   { label: "Početna", href: "/#pocetna" },
@@ -59,6 +62,13 @@ export default function Footer() {
               <a
                 href={PHONE_HREF}
                 className="text-sm text-gray-500 transition-colors hover:text-brand-600"
+                onClick={() =>
+                  trackEvent("phone_click", {
+                    value: 2500,
+                    currency: "RSD",
+                    source: "footer",
+                  })
+                }
               >
                 {PHONE_DISPLAY}
               </a>

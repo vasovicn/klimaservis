@@ -1,6 +1,7 @@
 "use client";
 
 import { PHONE_HREF, PHONE_DISPLAY } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import BookingButton from "./booking/BookingButton";
 
 export default function ContactSection() {
@@ -20,6 +21,13 @@ export default function ContactSection() {
         </p>
         <a
           href={PHONE_HREF}
+          onClick={() =>
+            trackEvent("phone_click", {
+              value: 2500,
+              currency: "RSD",
+              source: "contact_section",
+            })
+          }
           className="inline-flex items-center gap-3 rounded-full bg-white px-10 py-5 text-2xl font-extrabold text-brand-700 shadow-2xl transition-all hover:scale-105 hover:bg-brand-50 sm:text-3xl"
         >
           <svg

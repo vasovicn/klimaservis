@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { SERVICES } from "@/lib/services";
+import { trackEvent } from "@/lib/analytics";
 import { useBooking } from "./BookingContext";
 import type { BookingData } from "./BookingWizard";
 
@@ -16,6 +18,19 @@ export default function StepSuccess({
   const selectedServices = data.services
     .map((id) => SERVICES.find((s) => s.id === id))
     .filter(Boolean) as typeof SERVICES;
+
+  useEffect(() => {
+    const totalValue = selectedServices.reduce(
+      (sum, s) => sum + (Number(s.price) || 0),
+      0,
+    );
+    trackEvent("book_appointment", {
+      value: totalValue,
+      currency: "RSD",
+      services: data.services.join(","),
+      date: data.date,
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="py-6 text-center">
